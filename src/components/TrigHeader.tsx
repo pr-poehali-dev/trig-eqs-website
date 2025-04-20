@@ -23,11 +23,10 @@ const TrigHeader = () => {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link to="/">
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  <Home className="w-4 h-4 mr-2" />
-                  Главная
-                </NavigationMenuLink>
+              {/* Заменяем NavigationMenuLink внутри Link на простой div со стилями */}
+              <Link to="/" className={navigationMenuTriggerStyle()}>
+                <Home className="w-4 h-4 mr-2" />
+                Главная
               </Link>
             </NavigationMenuItem>
 
