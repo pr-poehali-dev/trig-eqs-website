@@ -1,71 +1,77 @@
-import MethodCard from "./MethodCard";
+import { Link } from "react-router-dom";
 import { 
-  FunctionSquare, 
-  RotateCcw, 
-  Sigma, 
-  SlidersHorizontal, 
-  Divide, 
-  CircleDot 
+  Calculator,
+  BookOpen,
+  Functions,
+  PenTool
 } from "lucide-react";
 
 const MethodsSection = () => {
   return (
-    <section className="py-16">
-      <div className="container">
-        <div className="mb-10 text-center">
-          <h2 className="text-3xl font-bold mb-4">Основные методы</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Изучите различные подходы к решению сложных тригонометрических уравнений,
-            которые помогут вам справиться с задачами повышенной сложности.
+    <div className="py-12 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl font-bold text-gray-800">Методы, которые помогут сдать ЕГЭ на 90+</h2>
+          <p className="text-gray-600 mt-2">
+            Собрал эти методы, готовясь к олимпиадам и экзамену. Они реально работают!
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <MethodCard
-            title="Метод замены"
-            description="Сведение тригонометрического уравнения к алгебраическому с помощью подходящей замены переменной."
-            difficulty="easy"
-            icon={<SlidersHorizontal className="h-5 w-5 text-primary" />}
-          />
-          
-          <MethodCard
-            title="Метод разложения"
-            description="Представление левой части уравнения в виде произведения множителей для нахождения корней."
-            difficulty="medium"
-            icon={<Divide className="h-5 w-5 text-primary" />}
-          />
-          
-          <MethodCard
-            title="Вспомогательный угол"
-            description="Преобразование суммы тригонометрических функций в одну с помощью специального угла."
-            difficulty="hard"
-            icon={<CircleDot className="h-5 w-5 text-primary" />}
-          />
-          
-          <MethodCard
-            title="Универсальная подстановка"
-            description="Замена t = tg(x/2) для преобразования всех тригонометрических функций в алгебраические."
-            difficulty="medium"
-            icon={<FunctionSquare className="h-5 w-5 text-primary" />}
-          />
-          
-          <MethodCard
-            title="Однородные уравнения"
-            description="Решение уравнений вида asinⁿx + bcosmx = 0 с использованием свойств однородных функций."
-            difficulty="hard"
-            icon={<Sigma className="h-5 w-5 text-primary" />}
-          />
-          
-          <MethodCard
-            title="Метод понижения степени"
-            description="Использование формул понижения степени для упрощения тригонометрических выражений."
-            difficulty="medium"
-            icon={<RotateCcw className="h-5 w-5 text-primary" />}
-          />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {methods.map((method) => (
+            <Link to="/methods" key={method.id} className="block">
+              <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-5 h-full">
+                <div className="flex items-center mb-4">
+                  <div className="h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                    {method.icon}
+                  </div>
+                  <h3 className="ml-3 font-semibold text-lg">{method.title}</h3>
+                </div>
+                <p className="text-gray-600 text-sm">{method.description}</p>
+                
+                <div className="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+                  <span className="text-xs text-gray-500">Сложность: {method.difficulty}</span>
+                  <span className="text-purple-600 text-sm font-medium">Подробнее →</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        
+        <div className="mt-12 text-center">
+          <Link to="/methods">
+            <button className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition-colors">
+              Все методы решения
+            </button>
+          </Link>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
+
+const methods = [
+  {
+    id: 1,
+    title: "Замена переменной",
+    description: "Самый простой и понятный метод. Используется, когда можно ввести новую переменную и свести к квадратному уравнению.",
+    difficulty: "⭐⭐",
+    icon: <Calculator className="h-5 w-5" />
+  },
+  {
+    id: 2,
+    title: "Универсальная подстановка",
+    description: "С помощью тангенса половинного угла можно решить почти любое уравнение. Универсальный, но немного сложный метод.",
+    difficulty: "⭐⭐⭐",
+    icon: <Functions className="h-5 w-5" />
+  },
+  {
+    id: 3,
+    title: "Однородные уравнения",
+    description: "Метод используется для решения уравнений вида asin²x + bsinxcosx + ccos²x = 0. Один из моих любимых!",
+    difficulty: "⭐⭐",
+    icon: <PenTool className="h-5 w-5" />
+  }
+];
 
 export default MethodsSection;

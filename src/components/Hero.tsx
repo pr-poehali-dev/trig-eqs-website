@@ -4,47 +4,46 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <div className="relative overflow-hidden bg-gradient-to-b from-accent to-background py-16">
+    <div className="bg-gradient-to-b from-purple-100 to-background py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight">
-              Нестандартные методы решения 
-              <span className="text-primary block mt-2">тригонометрических уравнений</span>
+          <div className="space-y-5">
+            <h1 className="text-3xl md:text-4xl font-bold">
+              Как решать сложные 
+              <span className="text-purple-600 block mt-1">тригонометрические уравнения</span>
             </h1>
-            <p className="text-lg text-muted-foreground">
-              Осваивай сложные тригонометрические методы просто и увлекательно. 
-              Наш сайт разработан для школьников, которые хотят глубже понять 
-              и освоить решение тригонометрических уравнений.
+            <p className="text-gray-600">
+              Привет! Я собрал на этом сайте способы решения тригонометрических уравнений, 
+              которые помогли мне на олимпиадах и подготовке к ЕГЭ. Надеюсь, они помогут и вам!
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-3">
               <Link to="/methods">
-                <Button size="lg" className="gap-2">
-                  Начать изучение <ArrowRight className="h-4 w-4" />
+                <Button className="gap-2 bg-purple-600 hover:bg-purple-700">
+                  Изучить методы <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
               <Link to="/examples">
-                <Button size="lg" variant="outline">
-                  Примеры решений
+                <Button variant="outline" className="border-purple-300 hover:bg-purple-50">
+                  Примеры с решениями
                 </Button>
               </Link>
             </div>
           </div>
-          <div className="hidden md:flex justify-center relative">
-            <div className="w-full h-64 bg-accent/50 rounded-lg p-4 relative overflow-hidden">
-              <div className="absolute -right-16 -bottom-16 w-64 h-64 bg-primary/20 rounded-full"></div>
-              <div className="absolute left-8 top-8 w-40 h-40 bg-primary/10 rounded-full"></div>
-              <div className="relative z-10 font-mono text-sm bg-card p-4 rounded-md shadow-lg">
-                <p className="text-primary-foreground bg-primary px-2 py-1 rounded inline-block mb-2">
-                  Метод замены переменной
+          <div className="hidden md:block">
+            <div className="bg-white p-5 rounded-lg shadow-md">
+              <div className="font-mono text-sm bg-purple-50 p-3 rounded border border-purple-200">
+                <p className="bg-purple-600 text-white px-2 py-1 rounded text-xs inline-block mb-2">
+                  Моя шпаргалка
                 </p>
                 <code className="block">
-                  sin(x)² + cos(x) = 1<br />
-                  Заменим t = cos(x)<br />
-                  Тогда sin(x)² = 1 - cos(x)² = 1 - t²<br />
-                  Получаем: 1 - t² + t = 1<br />
-                  t² - t = 0<br />
-                  t(t - 1) = 0<br />
+                  // Метод замены<br />
+                  sin²x - sin x - 2 = 0<br />
+                  Пусть t = sin x<br />
+                  t² - t - 2 = 0<br />
+                  (t-2)(t+1) = 0<br />
+                  t = 2 или t = -1<br />
+                  // А дальше решаем<br />
+                  // каждое уравнение...
                 </code>
               </div>
             </div>

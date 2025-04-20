@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import TrigHeader from "@/components/TrigHeader";
 import Footer from "@/components/Footer";
@@ -9,79 +7,76 @@ const Methods = () => {
     <div className="min-h-screen flex flex-col">
       <TrigHeader />
       
-      <main className="flex-grow container py-10">
-        <div className="mb-8">
-          <Link to="/">
-            <Button variant="ghost" className="gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              Назад на главную
-            </Button>
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <div className="mb-6">
+          <Link to="/" className="text-purple-600 hover:underline">
+            ← Назад на главную
           </Link>
         </div>
         
-        <h1 className="text-3xl font-bold mb-6">Методы решения тригонометрических уравнений</h1>
+        <h1 className="text-2xl font-bold mb-6">Методы решения тригонометрических уравнений</h1>
         
-        <div className="grid gap-8">
-          <section className="bg-card rounded-lg p-6 shadow-sm">
-            <h2 className="text-2xl font-bold mb-4">Метод замены переменной</h2>
-            <p className="mb-4">
-              Метод замены переменной – один из самых эффективных способов упростить 
-              тригонометрическое уравнение, сведя его к алгебраическому.
+        <div className="space-y-8">
+          <section className="bg-white rounded-lg shadow-sm p-5">
+            <h2 className="text-xl font-bold mb-3">Метод замены переменной</h2>
+            <p className="mb-3">
+              Это мой любимый метод, который я использую чаще всего. Он помогает превратить 
+              сложное тригонометрическое уравнение в обычное алгебраическое.
             </p>
             
-            <h3 className="text-xl font-medium mb-3">Алгоритм решения:</h3>
-            <ol className="list-decimal list-inside space-y-2 mb-4">
-              <li>Определить подходящую замену (например, t = sin x или t = tg x/2)</li>
-              <li>Выразить все тригонометрические функции через введенную переменную</li>
-              <li>Решить получившееся алгебраическое уравнение</li>
-              <li>Вернуться к исходной переменной и найти все решения</li>
+            <h3 className="font-medium mb-2">Как применять:</h3>
+            <ol className="list-decimal list-inside space-y-1 mb-4 text-gray-700">
+              <li>Найдите подходящую замену (например, t = sin x или t = tg x)</li>
+              <li>Выразите все функции через новую переменную</li>
+              <li>Решите получившееся алгебраическое уравнение</li>
+              <li>Вернитесь к исходной переменной и найдите все ответы</li>
             </ol>
             
-            <div className="bg-accent/50 p-4 rounded-md mb-4">
-              <h4 className="font-medium mb-2">Пример:</h4>
-              <p className="font-mono">
+            <div className="bg-purple-50 p-3 rounded mb-4 font-mono text-sm">
+              <p className="font-medium mb-1">Пример из моей тетради:</p>
+              <code>
                 sin²x + sin x - 2 = 0<br />
-                Заменим t = sin x<br />
+                Заменяю t = sin x<br />
                 t² + t - 2 = 0<br />
                 (t + 2)(t - 1) = 0<br />
                 t = -2 или t = 1<br />
-                sin x = -2 (нет решений) или sin x = 1<br />
+                sin x = -2 (нет решений, т.к. |sin x| ≤ 1) или sin x = 1<br />
                 x = π/2 + 2πn, n ∈ Z
-              </p>
+              </code>
             </div>
             
-            <div className="bg-primary/10 p-4 rounded-md">
-              <h4 className="font-medium mb-2">Подсказка:</h4>
-              <p>
-                Особенно эффективна универсальная тригонометрическая подстановка t = tg(x/2),
-                которая позволяет выразить sin x, cos x через рациональные функции от t.
+            <div className="bg-yellow-50 p-3 rounded border border-yellow-200">
+              <p className="font-medium">Совет:</p>
+              <p className="text-sm">
+                На ЕГЭ часто встречаются уравнения, где можно сделать замену sin x = t.
+                Это самая простая замена, поэтому всегда проверяйте её первой!
               </p>
             </div>
           </section>
           
-          <section className="bg-card rounded-lg p-6 shadow-sm">
-            <h2 className="text-2xl font-bold mb-4">Метод разложения на множители</h2>
-            <p className="mb-4">
-              Этот метод особенно полезен, когда уравнение можно представить в виде 
-              произведения нескольких тригонометрических выражений.
+          <section className="bg-white rounded-lg shadow-sm p-5">
+            <h2 className="text-xl font-bold mb-3">Метод разложения на множители</h2>
+            <p className="mb-3">
+              Этот метод я выучил на дополнительных занятиях. Он отлично работает, когда 
+              в уравнении есть произведения тригонометрических функций.
             </p>
             
-            <h3 className="text-xl font-medium mb-3">Алгоритм решения:</h3>
-            <ol className="list-decimal list-inside space-y-2 mb-4">
-              <li>Преобразуйте уравнение, чтобы выделить произведение множителей</li>
+            <h3 className="font-medium mb-2">Как применять:</h3>
+            <ol className="list-decimal list-inside space-y-1 mb-4 text-gray-700">
+              <li>Сгруппируйте слагаемые, чтобы получить произведение</li>
               <li>Приравняйте каждый множитель к нулю</li>
-              <li>Решите получившиеся простые уравнения</li>
-              <li>Объедините все найденные решения</li>
+              <li>Решите каждое простое уравнение отдельно</li>
+              <li>Объедините все найденные ответы</li>
             </ol>
             
-            <div className="bg-accent/50 p-4 rounded-md mb-4">
-              <h4 className="font-medium mb-2">Пример:</h4>
-              <p className="font-mono">
+            <div className="bg-purple-50 p-3 rounded mb-4 font-mono text-sm">
+              <p className="font-medium mb-1">Пример, который я решал:</p>
+              <code>
                 sin x · cos 2x = 0<br />
                 sin x = 0 или cos 2x = 0<br />
                 x = πn, n ∈ Z или 2x = π/2 + πn, n ∈ Z<br />
                 x = πn, n ∈ Z или x = π/4 + πn/2, n ∈ Z
-              </p>
+              </code>
             </div>
           </section>
         </div>
