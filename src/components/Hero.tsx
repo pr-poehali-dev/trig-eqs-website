@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -17,12 +18,16 @@ const Hero = () => {
               и освоить решение тригонометрических уравнений.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="gap-2">
-                Начать изучение <ArrowRight className="h-4 w-4" />
-              </Button>
-              <Button size="lg" variant="outline">
-                Примеры решений
-              </Button>
+              <Link to="/methods">
+                <Button size="lg" className="gap-2">
+                  Начать изучение <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+              <Link to="/examples">
+                <Button size="lg" variant="outline">
+                  Примеры решений
+                </Button>
+              </Link>
             </div>
           </div>
           <div className="hidden md:flex justify-center relative">

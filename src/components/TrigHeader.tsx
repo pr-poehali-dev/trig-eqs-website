@@ -4,132 +4,97 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { Home } from "lucide-react";
+import { Button } from "./ui/button";
+import { FileText, BookOpen, Calculator } from "lucide-react";
+
+interface LinkWithRefProps {
+  to: string;
+  children: React.ReactNode;
+  className?: string;
+  target?: string;
+}
+
+const LinkWithRef = React.forwardRef<HTMLAnchorElement, LinkWithRefProps>(
+  ({ to, children, className, target }, ref) => (
+    <Link to={to} className={className} ref={ref} target={target}>
+      {children}
+    </Link>
+  )
+);
+
+LinkWithRef.displayName = "LinkWithRef";
 
 const TrigHeader = () => {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 font-bold text-xl">
-          <span className="text-primary">Триго</span>Мастер
-        </Link>
-
+    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
+            <div className="size-9 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold text-xl">
+              T
+            </div>
+            <span className="font-bold text-xl hidden sm:inline-block">
+              ТригоМастер
+            </span>
+          </Link>
+        </div>
+        
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              {/* Заменяем NavigationMenuLink внутри Link на простой div со стилями */}
               <Link to="/" className={navigationMenuTriggerStyle()}>
-                <Home className="w-4 h-4 mr-2" />
                 Главная
               </Link>
             </NavigationMenuItem>
-
+            
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Методы решения</NavigationMenuTrigger>
+              <NavigationMenuTrigger>Методы</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  {methods.map((method) => (
-                    <ListItem
-                      key={method.title}
-                      title={method.title}
-                      href={method.href}
-                    >
-                      {method.description}
-                    </ListItem>
-                  ))}
-                </ul>
+                <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <Link to="/methods" className="group grid h-full w-full items-center justify-center gap-1 rounded-md bg-accent p-4 hover:bg-accent/80">
+                    <BookOpen className="h-6 w-6 text-primary group-hover:text-primary/70" />
+                    <div className="text-sm font-medium">Все методы</div>
+                  </Link>
+                  
+                  <Link to="/methods" className="group grid h-full w-full items-center justify-center gap-1 rounded-md bg-accent p-4 hover:bg-accent/80">
+                    <Calculator className="h-6 w-6 text-primary group-hover:text-primary/70" />
+                    <div className="text-sm font-medium">Метод замены</div>
+                  </Link>
+                  
+                  <Link to="/methods" className="group grid h-full w-full items-center justify-center gap-1 rounded-md bg-accent p-4 hover:bg-accent/80">
+                    <FileText className="h-6 w-6 text-primary group-hover:text-primary/70" />
+                    <div className="text-sm font-medium">Разложение на множители</div>
+                  </Link>
+                  
+                  <Link to="/methods" className="group grid h-full w-full items-center justify-center gap-1 rounded-md bg-accent p-4 hover:bg-accent/80">
+                    <div className="text-3xl">∫</div>
+                    <div className="text-sm font-medium">Универсальная подстановка</div>
+                  </Link>
+                </div>
               </NavigationMenuContent>
             </NavigationMenuItem>
-
+            
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Полезное</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  {resources.map((resource) => (
-                    <ListItem
-                      key={resource.title}
-                      title={resource.title}
-                      href={resource.href}
-                    >
-                      {resource.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
+              <Link to="/examples" className={navigationMenuTriggerStyle()}>
+                Примеры
+              </Link>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+        
+        <div className="hidden md:flex items-center gap-2">
+          <Link to="/methods">
+            <Button>Начать изучение</Button>
+          </Link>
+        </div>
       </div>
     </header>
   );
 };
-
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
-ListItem.displayName = "ListItem";
-
-const methods = [
-  {
-    title: "Универсальная подстановка",
-    href: "#",
-    description: "Замена переменных для сведения к алгебраическим уравнениям",
-  },
-  {
-    title: "Метод введения вспомогательного угла",
-    href: "#",
-    description: "Преобразование суммы тригонометрических функций в одну",
-  },
-  {
-    title: "Метод группировки",
-    href: "#",
-    description: "Разбиение уравнения на части для упрощения решения",
-  },
-];
-
-const resources = [
-  {
-    title: "Формулы и тождества",
-    href: "#",
-    description: "Основные тригонометрические формулы и тождества",
-  },
-  {
-    title: "Калькулятор",
-    href: "#",
-    description: "Интерактивный калькулятор для проверки решений",
-  },
-  {
-    title: "Задачи для практики",
-    href: "#",
-    description: "Сборник задач разной сложности с решениями",
-  },
-];
 
 export default TrigHeader;
